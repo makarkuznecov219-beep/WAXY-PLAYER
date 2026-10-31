@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Waxy Player</title>
+    <meta name="claude:viewport-fit-sides" content="cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Подключаем внешний файл стилей -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+    <canvas id="bgc"></canvas>
+    <div class="photo" id="photo"></div>
+    <div class="veil"></div>
+    <div class="grain"></div>
+</div>
+
+<header class="top">
+    <a class="logo" href="#" aria-label="Waxy, логотип" onclick="return false">
+        <span class="logo-word">WAXY<i>.</i></span>
+        <span class="logo-disc"></span>
+    </a>
+    <div class="top-actions">
+        <label class="pill" for="photoIn" tabindex="0">Свой фон</label>
+        <input id="photoIn" type="file" accept="image/*" hidden>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="card deck" id="deck" aria-label="Плеер">
+        <div class="turntable">
+            <div class="vinyl" id="vinyl"><div class="label"><span id="vletter">W</span></div></div>
+            <div class="pivot"></div><div class="arm" id="arm"></div>
+        </div>
+        <div class="meta">
+            <p class="eyebrow" id="themeTag">Выберите трек</p>
+            <h1 id="title">Waxy Player</h1>
+            <p class="artist" id="artist">50 оригинальных треков без авторских прав</p>
+        </div>
+        <canvas id="viz" height="40" aria-hidden="true"></canvas>
+        <div class="seek">
+            <span id="tcur">0:00</span>
+            <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Перемотка">
+            <span id="tdur">0:00</span>
+        </div>
+        <div class="controls">
+            <div class="transport">
+                <button class="ic" id="shuf" aria-pressed="false" aria-label="Перемешать"><svg viewBox="0 0 24 24"><path d="M17 3h4v4l-1.5-1.5-4.6 4.6-1.4-1.4 4.6-4.6zM3 7h4l8 10h3.5l-1.5-1.5 1.4-1.4L21 17l-3.6 3.6-1.4-1.4 1.5-1.2H14L6 9H3zM3 17h3l2.2-2.8 1.4 1.7L7.2 19H3z"/></svg></button>
+                <button class="ic" id="prev" aria-label="Предыдущий"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+                <button class="ic play" id="play" aria-label="Играть"><svg viewBox="0 0 24 24" id="playIc"><path d="M8 5v14l11-7z"/></svg></button>
+                <button class="ic" id="next" aria-label="Следующий"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5l11 7L4 19z"/></svg></button>
+                <button class="ic" id="rep" aria-pressed="false" aria-label="Повтор: выкл" title="Повтор: выкл"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zM17 17H7v-3l-4 4 4 4v-3h12v-6h-2z"/></svg></button>
+            </div>
+            <div class="extras">
+                <button class="pill" id="cc" aria-pressed="false">Субтитры</button>
+                <div class="vol"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9zM16.5 12a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg><input id="vol" type="range" min="0" max="100" value="80" aria-label="Громкость"></div>
+            </div>
+        </div>
+        <div class="karaoke" id="kar" hidden></div>
+        <p class="status" id="status" role="status"></p>
+    </section>
+
+    <aside class="side">
+        <section class="card rec" id="rec" aria-label="Подборка для вас"></section>
+        <section class="card list" aria-label="Плейлист">
+            <div class="list-head">
+                <div class="row"><h2>Плейлист · 50</h2><input class="search" id="q" type="search" placeholder="Поиск трека" aria-label="Поиск"></div>
+                <div class="chips" id="chips"></div>
+            </div>
+            <ol id="plist"></ol>
+            <p class="note">Все треки сгенерированы в вашем браузере и принадлежат проекту, поэтому чужих авторских прав в них нет.</p>
+        </section>
+    </aside>
+</main>
+
+<!-- Подключаем внешний файл скриптов -->
+<script src="script.js"></script>
+</body>
+</html>
